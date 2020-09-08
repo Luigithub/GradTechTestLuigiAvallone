@@ -1,22 +1,24 @@
 function createMenuData(data) {
   let result=[];
-  for (let i=0;i<data.length ;i++ ){
-  if (data[i].includes("/")){
-  let subStrTitle=data[i].split("/");
-    let index=(result.findIndex(element => element.title ===subStrTitle[0]));
-    if (index===-1){
-    let elem={};
-      elem.title=subStrTitle[0];
+  for (let i=0; i<data.length; i++ ){
+
+    if (data[i].includes("/")){
+      let subStrTitle=data[i].split("/");
+      let index=(result.findIndex(element => element.title ===subStrTitle[0]));
+      if (index===-1){
+        let elem={};
+        elem.title=subStrTitle[0];
         elem.data=[];
         elem.data.push(subStrTitle[1])
         result.push(elem);
-    }else {
-     result[index].data.push(subStrTitle[1]);
+      } else {
+       result[index].data.push(subStrTitle[1]);
+      }
     }
-  }
   }
   return result;
 }
+
 
 describe("menu Data Generator", () => {
     it("creates correct data structure ", () => {
