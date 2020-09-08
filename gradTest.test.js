@@ -1,18 +1,35 @@
 function createMenuData(data) {
   let result=[];
+
+  // Iterate through the list
   for (let i=0; i<data.length; i++ ){
 
+    // Check if string is in key/value format
     if (data[i].includes("/")){
+      
+      // Split string in key/value
       let subStrTitle=data[i].split("/");
-      let index=(result.findIndex(element => element.title ===subStrTitle[0]));
+      
+      // Look into the resulting array for a pre-existent key
+      let index=(result.findIndex(element => element.title === subStrTitle[0]));
+
+      // The key is not already present, adding
       if (index===-1){
         let elem={};
+        
+        // Title content
         elem.title=subStrTitle[0];
+        
+        // Data content
         elem.data=[];
         elem.data.push(subStrTitle[1])
+
         result.push(elem);
-      } else {
-       result[index].data.push(subStrTitle[1]);
+      } 
+      // The key was already there, just adding the new data
+      else {
+        // Pushing some more stuff into Data
+        result[index].data.push(subStrTitle[1]);
       }
     }
   }
